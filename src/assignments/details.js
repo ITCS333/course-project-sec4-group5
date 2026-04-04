@@ -13,7 +13,7 @@ function renderAssignmentDetails(assignment) {
 
     const filesList = document.getElementById('assignment-files-list');
     filesList.innerHTML = '';
-    assignment.files.forEach(url => {
+  (assignment.files || []).forEach(url => {
         const li = document.createElement('li');
         const a  = document.createElement('a');
         a.href        = url;
