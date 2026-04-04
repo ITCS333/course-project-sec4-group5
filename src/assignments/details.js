@@ -1,17 +1,5 @@
-// --- Global Data Store ---
 let currentAssignmentId = null;
 let currentComments     = [];
-
-// --- Element Selections ---
-const assignmentTitle       = document.getElementById('assignment-title');
-const assignmentDueDate     = document.getElementById('assignment-due-date');
-const assignmentDescription = document.getElementById('assignment-description');
-const assignmentFilesList   = document.getElementById('assignment-files-list');
-const commentList           = document.getElementById('comment-list');
-const commentForm           = document.getElementById('comment-form');
-const newCommentInput       = document.getElementById('new-comment');
-
-// --- Functions ---
 
 function getAssignmentIdFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -19,18 +7,19 @@ function getAssignmentIdFromURL() {
 }
 
 function renderAssignmentDetails(assignment) {
-    assignmentTitle.textContent       = assignment.title;
-    assignmentDueDate.textContent     = 'Due: ' + assignment.due_date;
-    assignmentDescription.textContent = assignment.description;
+    document.getElementById('assignment-title').textContent       = assignment.title;
+    document.getElementById('assignment-due-date').textContent    = 'Due: ' + assignment.due_date;
+    document.getElementById('assignment-description').textContent = assignment.description;
 
-    assignmentFilesList.innerHTML = '';
+    const filesList = document.getElementById('assignment-files-list');
+    filesList.innerHTML = '';
     assignment.files.forEach(url => {
         const li = document.createElement('li');
         const a  = document.createElement('a');
         a.href        = url;
         a.textContent = url;
         li.appendChild(a);
-        assignmentFilesList.appendChild(li);
+        filesList.appendChild(li);
     });
 }
 
@@ -50,16 +39,17 @@ function createCommentArticle(comment) {
 }
 
 function renderComments() {
+    const commentList = document.getElementById('comment-list');
     commentList.innerHTML = '';
     currentComments.forEach(comment => {
-        const article = createCommentArticle(comment);
-        commentList.appendChild(article);
+        commentList.appendChild(createCommentArticle(comment));
     });
 }
 
 async function handleAddComment(event) {
     event.preventDefault();
 
+    const newCommentInput = document.getElementById('new-comment');
     const commentText = newCommentInput.value.trim();
     if (!commentText) return;
 
@@ -85,6 +75,8 @@ async function handleAddComment(event) {
 async function initializePage() {
     currentAssignmentId = getAssignmentIdFromURL();
 
+    const assignmentTitle = document.getElementById('assignment-title');
+
     if (!currentAssignmentId) {
         assignmentTitle.textContent = 'Assignment not found.';
         return;
@@ -103,13 +95,12 @@ async function initializePage() {
     if (assignmentJson.success && assignmentJson.data) {
         renderAssignmentDetails(assignmentJson.data);
         renderComments();
-        commentForm.addEventListener('submit', handleAddComment);
+        document.getElementById('comment-form').addEventListener('submit', handleAddComment);
     } else {
         assignmentTitle.textContent = 'Assignment not found.';
     }
 }
 
-// --- Initial Page Load ---
 if (typeof module === 'undefined') {
     initializePage();
 }
