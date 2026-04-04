@@ -1,11 +1,4 @@
-// --- Global Data Store ---
 let assignments = [];
-
-// --- Element Selections ---
-const assignmentForm   = document.getElementById('assignment-form');
-const assignmentsTbody = document.getElementById('assignments-tbody');
-
-// --- Functions ---
 
 function createAssignmentRow(assignment) {
     const tr = document.createElement('tr');
@@ -43,10 +36,10 @@ function createAssignmentRow(assignment) {
 }
 
 function renderTable() {
-    assignmentsTbody.innerHTML = '';
+    const tbody = document.getElementById('assignments-tbody');
+    tbody.innerHTML = '';
     assignments.forEach(assignment => {
-        const row = createAssignmentRow(assignment);
-        assignmentsTbody.appendChild(row);
+        tbody.appendChild(createAssignmentRow(assignment));
     });
 }
 
@@ -76,7 +69,7 @@ async function handleAddAssignment(event) {
         if (result.success === true) {
             assignments.push({ id: result.id, title, due_date, description, files });
             renderTable();
-            assignmentForm.reset();
+            document.getElementById('assignment-form').reset();
         }
     }
 }
@@ -95,7 +88,7 @@ async function handleUpdateAssignment(id, fields) {
             a.id === id ? { id, ...fields } : a
         );
         renderTable();
-        assignmentForm.reset();
+        document.getElementById('assignment-form').reset();
 
         const submitBtn = document.getElementById('add-assignment');
         submitBtn.textContent = 'Add Assignment';
@@ -139,11 +132,10 @@ async function loadAndInitialize() {
     assignments = result.data || [];
     renderTable();
 
-    assignmentForm.addEventListener('submit', handleAddAssignment);
-    assignmentsTbody.addEventListener('click', handleTableClick);
+    document.getElementById('assignment-form').addEventListener('submit', handleAddAssignment);
+    document.getElementById('assignments-tbody').addEventListener('click', handleTableClick);
 }
 
-// --- Initial Page Load ---
 if (typeof module === 'undefined') {
     loadAndInitialize();
 }
