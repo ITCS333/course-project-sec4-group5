@@ -1,7 +1,3 @@
-// --- Element Selections ---
-const assignmentListSection = document.getElementById('assignment-list-section');
-
-// --- Functions ---
 function createAssignmentArticle(assignment) {
     const article = document.createElement('article');
 
@@ -27,18 +23,18 @@ function createAssignmentArticle(assignment) {
 }
 
 async function loadAssignments() {
+    const section = document.getElementById('assignment-list-section');
     const response = await fetch('./api/index.php');
     const json = await response.json();
 
-    assignmentListSection.innerHTML = '';
+    section.innerHTML = '';
 
     json.data.forEach(assignment => {
         const article = createAssignmentArticle(assignment);
-        assignmentListSection.appendChild(article);
+        section.appendChild(article);
     });
 }
 
-// --- Initial Page Load ---
 if (typeof module === 'undefined') {
     loadAssignments();
 }
