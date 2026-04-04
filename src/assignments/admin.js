@@ -144,4 +144,6 @@ async function loadAndInitialize() {
 }
 
 // --- Initial Page Load ---
-loadAndInitialize();
+if (typeof module === 'undefined') {
+    loadAndInitialize();
+}
