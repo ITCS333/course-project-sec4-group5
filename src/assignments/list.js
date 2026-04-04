@@ -39,4 +39,6 @@ async function loadAssignments() {
 }
 
 // --- Initial Page Load ---
-loadAssignments();
+if (typeof module === 'undefined') {
+    loadAssignments();
+}
