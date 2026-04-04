@@ -110,4 +110,6 @@ async function initializePage() {
 }
 
 // --- Initial Page Load ---
-initializePage();
+if (typeof module === 'undefined') {
+    initializePage();
+}
