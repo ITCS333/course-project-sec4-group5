@@ -8,10 +8,14 @@ const submitButton = document.querySelector("#add-resource");
 function createResourceRow(resource) {
   const tr = document.createElement("tr");
 
+
+
+  
+
   tr.innerHTML = `
     <td>${resource.title}</td>
     <td>${resource.description || ""}</td>
-    <td><a href="${resource.link}" target="_blank">Open Link</a></td>
+    <td><a href="details.html?id=${resource.id}">View</a></td>
     <td>
       <button class="edit-btn" data-id="${resource.id}">Edit</button>
       <button class="delete-btn" data-id="${resource.id}">Delete</button>
