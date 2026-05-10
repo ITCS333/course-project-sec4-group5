@@ -6,23 +6,31 @@ const resourcesTbody = document.querySelector("#resources-tbody");
 const submitButton = document.querySelector("#add-resource");
 
 function createResourceRow(resource) {
-  const tr = document.createElement("tr");
+    const tr = document.createElement("tr");
 
+    tr.innerHTML = `
+        <td>${resource.title}</td>
 
+        <td>${resource.description || ""}</td>
 
-  
+        <td>
+            <a href="details.html?id=${resource.id}">
+                View Resource & Discussion
+            </a>
+        </td>
 
-  tr.innerHTML = `
-    <td>${resource.title}</td>
-    <td>${resource.description || ""}</td>
-    <td><a href="details.html?id=${resource.id}">View</a></td>
-    <td>
-      <button class="edit-btn" data-id="${resource.id}">Edit</button>
-      <button class="delete-btn" data-id="${resource.id}">Delete</button>
-    </td>
-  `;
+        <td>
+            <button class="edit-btn" data-id="${resource.id}">
+                Edit
+            </button>
 
-  return tr;
+            <button class="delete-btn" data-id="${resource.id}">
+                Delete
+            </button>
+        </td>
+    `;
+
+    return tr;
 }
 
 function renderTable() {
