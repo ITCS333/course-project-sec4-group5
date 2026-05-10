@@ -1,12 +1,8 @@
 <?php
 header("Content-Type: application/json");
 
-$db = new PDO(
-    "mysql:host=localhost;dbname=course;charset=utf8mb4",
-    "root",
-    "root"
-);
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once __DIR__ . "/db.php";
+$db = getDBConnection();
 
 $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
 $input = json_decode(file_get_contents("php://input"), true) ?? [];
