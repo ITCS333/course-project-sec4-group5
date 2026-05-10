@@ -9,10 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit;
 }
 
-require_once "./config/Database.php";
+$host = "127.0.0.1";
+$dbname = "course";
+$username = "root";
+$password = "";
 
-$database = new Database();
-$db = $database->getConnection();
+$db = new PDO(
+    "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+    $username,
+    $password
+);
+
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $method = $_SERVER["REQUEST_METHOD"];
 $data = json_decode(file_get_contents("php://input"), true) ?? [];

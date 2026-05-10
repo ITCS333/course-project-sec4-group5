@@ -8,10 +8,17 @@ function createResourceArticle(resource) {
   article.innerHTML = `
     <h2>${resource.title}</h2>
     <p>${resource.description || ""}</p>
-    <a href="details.html?id=${resource.id}">
-      View Resource & Discussion
+
+    <a href="${resource.link}" target="_blank">
+        ${resource.link}
     </a>
-  `;
+
+    <br><br>
+
+    <a href="details.html?id=${resource.id}">
+        View Resource & Discussion
+    </a>
+`;
 
   return article;
 }
