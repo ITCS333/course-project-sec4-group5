@@ -14,9 +14,7 @@ function createResourceRow(resource) {
         <td>${resource.description || ""}</td>
 
         <td>
-            <a href="details.html?id=${resource.id}">
-                View Resource & Discussion
-            </a>
+            <td><a href="${resource.link}" target="_blank">${resource.link}</a></td>
         </td>
 
         <td>
