@@ -1,108 +1,79 @@
-<!--
-  Requirement: Create the Page for a Single Discussion Topic
-
-  Instructions:
-  This page displays the original post of a topic, all its replies,
-  and a form to add a new reply.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add <meta> tags for charset (UTF-8) and viewport
-         (width=device-width, initial-scale=1.0). -->
+<!-- Character encoding -->
+<meta charset="UTF-8">
 
-    <!-- TODO: Add a <title>, e.g., "Topic Details". -->
+<!-- Responsive viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+<!-- Page title -->
+<title>Topic Details</title>
 
-    <!-- Required: link topic.js with defer. -->
-    <script src="topic.js" defer></script>
+<!-- Optional CSS framework -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Optional custom stylesheet -->
+<link rel="stylesheet" href="styles.css">
+
+<!-- JavaScript for dynamic topic/replies functionality -->
+<script src="topic.js" defer></script>
 </head>
-<body>
+<body class="container py-4">
 
-    <!-- TODO: Create a <header>.
-         Inside it, add an <h1 id="topic-subject">.
-         topic.js will set its textContent to the topic's subject.
-         Leave it empty for now. -->
+<!-- Header -->
+<header class="mb-4">
+<h1 id="topic-subject"></h1>
+</header>
 
-    <!-- TODO: Create the <main> content area. -->
+<!-- Main content -->
+<main>
 
-        <!-- ============================================================
-             Section 1: Original Post
-             ============================================================ -->
-        <!-- TODO: Use an <article id="original-post"> to display the
-             main topic post. -->
+<!-- ============================================================
+            Section 1: Original Post
+            ============================================================ -->
+<article id="original-post" class="border p-3 rounded mb-5">
+<p id="op-message"></p>
+<footer id="op-footer" class="text-muted mb-2"></footer>
+<div id="op-actions">
+<!-- topic.js will inject Edit/Delete buttons here -->
+</div>
+</article>
 
-            <!-- TODO: Add a <p id="op-message">.
-                 topic.js will set its textContent to the topic's message. -->
+<!-- ============================================================
+            Section 2: Replies
+            ============================================================ -->
+<section id="replies-section" class="mb-5">
+<h2>Replies</h2>
 
-            <!-- TODO: Add a <footer id="op-footer">.
-                 topic.js will set its textContent to
-                 "Posted by: {author} on {created_at}". -->
+<div id="reply-list-container" class="list-group">
+<!-- topic.js will inject reply articles here -->
+<!-- Example template:
+<article class="list-group-item mb-3">
+<p>Have you tried using justify-content: space-between?</p>
+<footer>Posted by: Ali Hassan on 2025-01-14</footer>
+<div>
+<button class="delete-reply-btn" data-id="1">Delete</button>
+</div>
+</article>
+               -->
+</div>
 
-            <!-- TODO: Add a <div> for action buttons.
-                 topic.js will inject an Edit button and a Delete button here.
-                 The Delete button must have class="delete-btn"
-                 and data-id="{id}" so topic.js can handle it.
-                 NOTE: In a real app these buttons would only be visible
-                 to the topic's author or the admin. -->
+<!-- ============================================================
+                Section 3: Add a Reply Form
+                ============================================================ -->
+<form id="reply-form" action="#" class="border p-3 rounded mt-4">
+<fieldset>
+<legend>Your Reply</legend>
+<div class="mb-3">
+<label for="new-reply" class="form-label">Message:</label>
+<textarea id="new-reply" class="form-control" rows="4" required></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Post Reply</button>
+</fieldset>
+</form>
+</section>
 
-        <!-- End of <article#original-post> -->
-
-
-        <!-- ============================================================
-             Section 2: Replies
-             ============================================================ -->
-        <!-- TODO: Create a <section id="replies-section">. -->
-
-            <!-- TODO: Add a sub-heading <h2> "Replies". -->
-
-            <!-- TODO: Create a <div id="reply-list-container"> to hold the
-                 list of reply articles.
-                 The id is required by topic.js. -->
-
-                <!-- topic.js will inject one <article> per reply here.
-                     Each article follows the structure below. -->
-
-                <!-- Example Reply Article Structure (do NOT hardcode real
-                     data; topic.js fetches it from the API):
-
-                <article>
-                    <p>Have you tried using justify-content: space-between?</p>
-                    <footer>Posted by: Ali Hassan on 2025-01-14</footer>
-                    <div>
-                        <button class="delete-reply-btn" data-id="1">Delete</button>
-                    </div>
-                </article>
-
-                The data-id holds the integer id from the replies table
-                (primary key). -->
-
-            <!-- End of #reply-list-container -->
-
-            <!-- ============================================================
-                 Section 3: Add a Reply Form
-                 ============================================================ -->
-            <!-- TODO: Create a <form id="reply-form"> (action="#").
-                 The id is required by topic.js. -->
-
-                <!-- TODO: Use a <fieldset> to group the controls. -->
-                    <!-- TODO: Add a <legend>, e.g., "Your Reply". -->
-
-                    <!-- TODO: Add a <label> and <textarea> for the reply.
-                         - label for="new-reply"
-                         - textarea id="new-reply", required
-                         - The id must be exactly "new-reply" as topic.js
-                           reads this element by that id. -->
-
-                    <!-- TODO: Add a submit <button>.
-                         - type="submit"
-                         - Text: "Post Reply" -->
-                <!-- End of <fieldset> -->
-            <!-- End of <form> -->
-
-        <!-- End of <section#replies-section> -->
-
-    <!-- End of <main> -->
+</main>
 </body>
 </html>
