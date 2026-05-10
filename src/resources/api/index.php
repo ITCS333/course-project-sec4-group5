@@ -5,7 +5,7 @@ $method = $_SERVER["REQUEST_METHOD"] ?? "GET";
 $input = json_decode(file_get_contents("php://input"), true) ?? [];
 
 try {
-    $db = new PDO("mysql:host=127.0.0.1;dbname=course;charset=utf8mb4", "root", "");
+   $db = new PDO("mysql:host=localhost;dbname=course;charset=utf8mb4", "root", "root");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $action = $_GET["action"] ?? null;
