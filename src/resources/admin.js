@@ -14,8 +14,10 @@ function createResourceRow(resource) {
         <td>${resource.description || ""}</td>
 
         <td>
-            <td><a href="${resource.link}" target="_blank">${resource.link}</a></td>
-        </td>
+           
+    <a href="${resource.link}" target="_blank">${resource.link}</a>
+</td>
+        
 
         <td>
             <button class="edit-btn" data-id="${resource.id}">
@@ -31,14 +33,15 @@ function createResourceRow(resource) {
     return tr;
 }
 
-function renderTable() {
+function renderTable(resourceList) {
   resourcesTbody.innerHTML = "";
 
-  resources.forEach((resource) => {
+  resourceList.forEach((resource) => {
     const row = createResourceRow(resource);
     resourcesTbody.appendChild(row);
   });
 }
+
 
 async function handleAddResource(event) {
   event.preventDefault();
@@ -66,7 +69,7 @@ async function handleAddResource(event) {
       editId = null;
       submitButton.textContent = "Add Resource";
       resourceForm.reset();
-      renderTable();
+     renderTable(resources);
     }
 
     return;
@@ -89,7 +92,7 @@ async function handleAddResource(event) {
     });
 
     resourceForm.reset();
-    renderTable();
+    renderTable(resources);
   }
 }
 
@@ -107,7 +110,7 @@ async function handleTableClick(event) {
 
     if (result.success) {
       resources = resources.filter((resource) => resource.id != id);
-      renderTable();
+      renderTable(resources);
     }
   }
 
@@ -133,11 +136,11 @@ async function loadAndInitialize() {
 
   if (result.success) {
     resources = result.data;
-    renderTable();
+    renderTable(resources);
   }
 
   resourceForm.addEventListener("submit", handleAddResource);
   resourcesTbody.addEventListener("click", handleTableClick);
 }
 
-loadAndInitialize();
+loadAndInitialize(); 
