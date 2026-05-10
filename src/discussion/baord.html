@@ -1,37 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Character encoding -->
 <meta charset="UTF-8">
-
-<!-- Responsive viewport -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Page title -->
 <title>Discussion Board</title>
-
-<!-- Optional CSS framework (Bootstrap) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-<!-- Optional custom stylesheet -->
 <link rel="stylesheet" href="styles.css">
-
-<!-- JavaScript for dynamic board functionality -->
 <script src="board.js" defer></script>
 </head>
 <body class="container py-4">
 
-<!-- Header -->
 <header class="mb-5">
 <h1>General Discussion Board</h1>
 </header>
 
-<!-- Main content -->
 <main>
 
-<!-- ============================================================
-            Section 1: Create a New Topic
-            ============================================================ -->
+<!-- Section 1: Create a New Topic -->
 <section class="mb-5">
 <h2>Start a New Topic</h2>
 
@@ -54,29 +39,14 @@
 </form>
 </section>
 
-<!-- ============================================================
-            Section 2: Existing Topics
-            ============================================================ -->
+<!-- Section 2: Existing Topics -->
 <section>
 <h2>All Topics</h2>
 
-<!-- Placeholder for board.js to inject topic articles -->
-<div id="topic-list-container" class="list-group">
-<!-- Example template (board.js will inject real topics)
-<article>
-<h3>
-<a href="topic.html?id=1">Welcome to Web Development!</a>
-</h3>
-<footer>Posted by: Course Admin on 2025-01-13</footer>
-<div>
-<button class="edit-btn" data-id="1">Edit</button>
-<button class="delete-btn" data-id="1">Delete</button>
-</div>
-</article>
-               -->
-</div>
-</section>
+<!-- Start empty; board.js will inject articles -->
+<div id="topic-list-container" class="list-group"></div>
 
+</section>
 </main>
 </body>
 </html>
